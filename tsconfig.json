@@ -2,8 +2,15 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "lib": [
+      "es2019",
+      "dom"
+    ],
+    "module": "es2020",
+    "target": "es2016",
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
+    "moduleResolution": "node",
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "noImplicitReturns": true,
@@ -12,14 +19,19 @@
     "declaration": false,
     "downlevelIteration": true,
     "experimentalDecorators": true,
-    "moduleResolution": "node",
     "importHelpers": true,
-    "target": "es2015",
-    "module": "es2020",
-    "lib": [
-      "es2018",
-      "dom"
-    ]
+    "paths": {
+      "@assets/*": ["src/assets/*"],
+      "@environments/*": ["src/environments/*"],
+      "@img/*": ["src/assets/img/*"],
+      "@core/*": ["src/app/core/*"],
+      "@features/*": ["src/app/features/*"],
+      "@layout/*": ["src/app/layout/*"],
+      "@network/*": ["src/app/network/*"],
+      "@shared/*": ["src/app/shared/*"],
+      "@store/*": ["src/app/store/*"],
+      "@testing/*": ["src/app/testing/*"]
+    }
   },
   "angularCompilerOptions": {
     "strictInjectionParameters": true,
