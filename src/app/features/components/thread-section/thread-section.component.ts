@@ -1,4 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { ThreadsService } from '@shared/services';
 
 @Component({
   selector: 'app-thread-section',
@@ -8,9 +9,10 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 })
 export class ThreadSectionComponent implements OnInit {
 
-  constructor() { }
+  constructor(private threadsSrv: ThreadsService) { }
 
   ngOnInit(): void {
+    this.threadsSrv.loadUserThreads();
   }
 
 }
