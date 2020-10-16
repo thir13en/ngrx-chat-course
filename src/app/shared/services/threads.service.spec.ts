@@ -1,12 +1,16 @@
 import { TestBed } from '@angular/core/testing';
+import { TestingModule } from '@testing/testing.module';
 
 import { ThreadsService } from './threads.service';
+
 
 describe('ThreadsService', () => {
   let service: ThreadsService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      imports: [TestingModule],
+    });
     service = TestBed.inject(ThreadsService);
   });
 
