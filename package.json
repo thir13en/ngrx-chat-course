@@ -20,7 +20,7 @@
     "build:ssr": "ng build --prod && ng run angular-training:server:production",
     "prerender": "ng run angular-training:prerender",
     "api-server": "./node_modules/.bin/ts-node ./src/server/server.ts",
-    "api-server:debug": "./node_modules/.bin/ts-node $NODE_DEBUG_OPTION ./src/server/server.ts",
+    "api-server:debug": "./node_modules/.bin/ts-node $NODE_DEBUG_OPTION ./src/server/server.ts"
   },
   "dependencies": {
     "@angular/animations": "~10.1.3",
