@@ -29,6 +29,7 @@
       "@layout/*": ["src/app/layout/*"],
       "@network/*": ["src/app/network/*"],
       "@shared/*": ["src/app/shared/*"],
+      "@server/*": ["src/server/*"],
       "@store/*": ["src/app/store/*"],
       "@testing/*": ["src/app/testing/*"]
     }

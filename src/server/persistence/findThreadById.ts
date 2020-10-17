@@ -1,11 +1,12 @@
-import { dbThreads } from '../db-data';
-import { Thread } from '../../../shared/model/thread';
 import * as _ from 'lodash';
 
+import { Thread } from '@shared/models';
+import { dbThreads } from '../db-data';
 
-export function findThreadById(threadId: number) {
 
-  const threads: Thread[] = <any> _.values(dbThreads);
+export function findThreadById(threadId: number): Thread | undefined {
+
+  const threads: Thread[] = _.values(dbThreads);
 
   return _.find(threads, thread => thread.id === threadId);
 }
