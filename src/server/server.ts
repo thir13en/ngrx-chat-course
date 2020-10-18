@@ -1,5 +1,6 @@
 // @ts-ignore
 const express = require('express');
+const bodyParser = require('body-parser');
 import { Application } from 'express';
 
 import { apiGetUserThreads } from './api/apiGetUserThreads';
@@ -7,7 +8,6 @@ import { apiSaveNewMessage } from './api/apiSaveNewMessage';
 import { apiMessageNotificationsPerUser } from './api/apiMessageNotificationsPerUser';
 import { apiUpdateThread } from './api/apiMarkThreadAsReadByUser';
 
-const bodyParser = require('body-parser');
 
 const app: Application = express();
 
