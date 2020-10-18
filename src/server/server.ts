@@ -1,4 +1,5 @@
-import * as express from 'express';
+// @ts-ignore
+const express = require('express');
 import { Application } from 'express';
 
 import { apiGetUserThreads } from './api/apiGetUserThreads';
