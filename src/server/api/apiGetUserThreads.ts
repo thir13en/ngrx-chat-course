@@ -1,10 +1,11 @@
 import { Application, Request, Response } from 'express';
 import * as _ from 'lodash';
 
-import { Message } from '@shared/models';
+import { Message } from '../../app/shared/models';
+import { AllUserData } from '../../app/shared/to';
 import { findDbThreadsPerUser } from '../persistence/findDbThreadsPerUser';
 import { dbMessages, dbParticipants } from '../db-data';
-import { AllUserData } from '@shared/to';
+
 
 export function apiGetUserThreads(app: Application): void {
 

@@ -1,4 +1,4 @@
-import { Message, Participant, Thread } from '@shared/models';
+import { Message, Participant, Thread } from '../app/shared/models';
 
 
 export const dbParticipants: { [key: number]: Participant } = {
