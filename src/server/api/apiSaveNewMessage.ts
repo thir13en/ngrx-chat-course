@@ -1,21 +1,22 @@
 import { Application } from 'express';
 import * as _ from 'lodash';
-import { Message } from '../../../shared/model/message';
+
 import { dbMessages, dbMessagesQueuePerUser } from '../db-data';
 import { findThreadById } from '../persistence/findThreadById';
+import { Message } from '../../app/shared/models';
 
 
 let messageIdCounter = 20;
 
 
-export function apiSaveNewMessage(app: Application) {
+export function apiSaveNewMessage(app: Application): void {
 
   app.route('/api/threads/:id').post((req, res) => {
 
     const payload = req.body;
 
-    const threadId = parseInt(req.params.id),
-      participantId = parseInt(req.headers['userid']);
+    const threadId = parseInt(req.params.id, 10);
+    const participantId = parseInt(req.headers.userid![0] ?? req.headers.userid, 10);
 
     const message: Message = {
       id: messageIdCounter++,
@@ -32,10 +33,10 @@ export function apiSaveNewMessage(app: Application) {
     const thread = findThreadById(threadId);
     thread.messageIds.push(message.id);
 
-    const otherParticipantIds = _.keys(thread.participants).filter(id => parseInt(id) !== participantId);
+    const otherParticipantIds = _.keys(thread.participants).filter(id => +id !== participantId);
 
-    otherParticipantIds.forEach(participantId => {
-      thread.participants[participantId] += 1;
+    otherParticipantIds.forEach(partId => {
+      thread.participants[partId] += 1;
       dbMessagesQueuePerUser[participantId].push(message.id);
 
     });
