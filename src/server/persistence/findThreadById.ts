@@ -1,6 +1,6 @@
 import * as _ from 'lodash';
 
-import { Thread } from '@shared/models';
+import { Thread } from '../../app/shared/models';
 import { dbThreads } from '../db-data';
 
 
