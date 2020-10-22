@@ -30,13 +30,13 @@ export function apiSaveNewMessage(app: Application): void {
     // already linked to a thread
     dbMessages[message.id] = message;
 
-    const thread = findThreadById(threadId);
+    const thread = findThreadById(threadId)!;
     thread.messageIds.push(message.id);
 
     const otherParticipantIds = _.keys(thread.participants).filter(id => +id !== participantId);
 
     otherParticipantIds.forEach(partId => {
-      thread.participants[partId] += 1;
+      thread.participants[+partId] += 1;
       dbMessagesQueuePerUser[participantId].push(message.id);
 
     });
