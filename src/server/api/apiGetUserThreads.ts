@@ -4,14 +4,15 @@ import * as _ from 'lodash';
 import { Message } from '../../app/shared/models';
 import { AllUserData } from '../../app/shared/to';
 import { findDbThreadsPerUser } from '../persistence/findDbThreadsPerUser';
-import { dbMessages, dbParticipants } from '../db-data';
+import { dbMessages, dbParticipants, dbThreads } from '../db-data';
 
 
 export function apiGetUserThreads(app: Application): void {
 
   app.route('/api/threads').get((req: Request, res: Response) => {
 
-    const participantId = parseInt((req.headers.userid as string), 10);
+    const participantId = +req.headers.userid!;
+    console.log(participantId);
 
     const threadsPerUser = findDbThreadsPerUser(participantId);
 
@@ -30,9 +31,9 @@ export function apiGetUserThreads(app: Application): void {
     const participants = _.uniq(participantIds.map(partId => dbParticipants[+partId]));
 
     const response: AllUserData = {
-      participants,
-      messages,
-      threads: threadsPerUser,
+      participants: [dbParticipants],
+      messages: [dbMessages],
+      threads: [dbThreads],
     };
 
     res.status(200).json(response);
