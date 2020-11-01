@@ -7,7 +7,7 @@ export class SessionUserModel {
   readonly phone: string;
   readonly photoUrl: string;
 
-  constructor(userRes: any) {
+  constructor(userRes: unknown) {
     this.id = userRes.id;
     this.email = userRes.email;
     this.username = userRes.username;
