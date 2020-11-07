@@ -10,7 +10,7 @@ import { ThreadSectionComponent } from '@features/components/thread-section/thre
   imports: [
     BrowserModule,
     AppCoreModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   declarations: [
     AppComponent,

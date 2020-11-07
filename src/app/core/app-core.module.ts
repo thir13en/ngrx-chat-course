@@ -8,10 +8,14 @@ import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
 import { BrowserUnsupportedComponent, NotFoundComponent } from './pages';
+import { StoreModule } from '@ngrx/store';
 
 
 @NgModule({
-  exports: [HttpClientModule],
+  exports: [
+    HttpClientModule,
+    StoreModule.forRoot({})
+  ],
   declarations: [BrowserUnsupportedComponent, NotFoundComponent]
 })
 export class AppCoreModule {
