@@ -1,5 +1,5 @@
 import * as threadsActions from './actions';
 export { AppState } from './app-state';
-export { UiState } from './ui-state';
-export { StoreData } from './store-data';
+export { UiState, INITIAL_UI_STATE } from './ui-state';
+export { StoreData, INITIAL_STORE_DATA } from './store-data';
 export { threadsActions };
