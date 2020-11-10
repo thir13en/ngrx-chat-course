@@ -9,12 +9,13 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { BrowserUnsupportedComponent, NotFoundComponent } from './pages';
 import { StoreModule } from '@ngrx/store';
+import { appReducerFn } from '@store/app-state';
 
 
 @NgModule({
   exports: [
     HttpClientModule,
-    StoreModule.forRoot({})
+    StoreModule.forRoot({ reducer: appReducerFn }),
   ],
   declarations: [BrowserUnsupportedComponent, NotFoundComponent]
 })
