@@ -1,6 +1,6 @@
 import { INITIAL_UI_STATE, UiState } from '@store/ui-state';
 import { INITIAL_STORE_DATA, StoreData } from '@store/store-data';
-import { Action, createReducer, State } from '@ngrx/store';
+import { Action, createReducer, on, State } from '@ngrx/store';
 
 
 export interface AppState {
@@ -15,6 +15,6 @@ const INITIAL_APP_STATE: AppState = {
 
 const appReducer = createReducer(INITIAL_APP_STATE);
 
-export function appReducerFn(state: AppState, action: Action): AppState {
+export function appReducerFn(state: AppState | undefined, action: Action): AppState {
   return appReducer(state, action);
 }
