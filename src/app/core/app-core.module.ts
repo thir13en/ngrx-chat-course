@@ -14,7 +14,7 @@ import { appReducerFn } from '@store/app-state';
 
 @NgModule({
   imports: [
-    StoreModule.forRoot({ reducer: appReducerFn }),
+    StoreModule.forRoot({ appState: appReducerFn }),
   ],
   exports: [
     HttpClientModule,
