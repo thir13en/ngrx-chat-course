@@ -9,7 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { BrowserUnsupportedComponent, NotFoundComponent } from './pages';
 import { StoreModule } from '@ngrx/store';
-import { appReducerFn } from '@store/app-state';
+import { appReducerFn } from '@store/app-reducer';
 
 
 @NgModule({
