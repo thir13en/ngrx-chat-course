@@ -19,8 +19,9 @@ export class ThreadSectionComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.threadsSrv.loadUserThreads().subscribe(console.log);
-    this.store.dispatch(threadsActions.loadUserThreads());
+    this.threadsSrv.loadUserThreads().subscribe(userTreads => {
+      this.store.dispatch(threadsActions.loadUserThreads(userTreads));
+    });
     this.store.subscribe(console.log);
   }
 
