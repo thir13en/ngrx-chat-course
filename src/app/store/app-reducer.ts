@@ -15,10 +15,14 @@ const appReducer = createReducer(
   INITIAL_APP_STATE,
   on(
     appActions.loadUserThreads,
-    (state, action: { type: string, payload: unknown }) => {
-      console.log(action.type + ' dispatched');
-      console.log(action.payload);
-      return state;
+    (state, action) => {
+      return {
+        ...state,
+        storeData: {
+          ...state.storeData,
+          ...action.payload,
+        }
+      };
     },
   ),
 );

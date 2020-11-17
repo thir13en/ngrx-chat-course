@@ -7,5 +7,5 @@ const LOAD_USER_THREADS = '[Threads] load user threads';
 
 export const loadUserThreads = createAction(
   LOAD_USER_THREADS,
-  props<AllUserData>(),
+  props<{ payload: AllUserData }>(),
 );
