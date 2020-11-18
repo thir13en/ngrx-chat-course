@@ -1,7 +1,7 @@
 import { Message, Participant, Thread } from '@shared/models';
 
 export interface AllUserData {
-  participants: Participant[];
-  threads: Thread[];
-  messages: Message[];
+  participants: { [key: number]: Participant };
+  threads: { [key: number]: Thread };
+  messages: { [key: number]: Message };
 }

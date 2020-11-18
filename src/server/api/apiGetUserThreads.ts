@@ -31,9 +31,9 @@ export function apiGetUserThreads(app: Application): void {
     const participants = _.uniq(participantIds.map(partId => dbParticipants[+partId]));
 
     const response: AllUserData = {
-      participants: [dbParticipants],
-      messages: [dbMessages],
-      threads: [dbThreads],
+      participants: dbParticipants,
+      messages: dbMessages,
+      threads: dbThreads,
     };
 
     res.status(200).json(response);
