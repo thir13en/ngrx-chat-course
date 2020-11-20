@@ -14,7 +14,7 @@ export function apiGetUserThreads(app: Application): void {
     const participantId = +req.headers.userid!;
     console.log(participantId);
 
-    // FIXME: this is empty
+    // FIXME: this is empty, because there is no participant id
     const threadsPerUser = findDbThreadsPerUser(participantId);
 
     let messages: Message[] = [];
@@ -22,7 +22,6 @@ export function apiGetUserThreads(app: Application): void {
 
     threadsPerUser.forEach(thread => {
       const threadMessages: Message[] = _.filter(dbMessages, (message) => message.threadId === thread.id);
-      console.log(threadMessages);
 
       messages = messages.concat(threadMessages);
 
@@ -33,7 +32,7 @@ export function apiGetUserThreads(app: Application): void {
     const participants = _.uniq(participantIds.map(partId => dbParticipants[+partId]));
 
     const response: AllUserData = {
-      participants,
+      participants: [participantId],
       messages,
       threads: dbThreads,
     };
