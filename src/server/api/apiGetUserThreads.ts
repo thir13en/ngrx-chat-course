@@ -1,6 +1,7 @@
 import { Application, Request, Response } from 'express';
 import * as _ from 'lodash';
 
+import { ERRORS } from '../core';
 import { Message } from '../../app/shared/models';
 import { AllUserData } from '../../app/shared/to';
 import { findDbThreadsPerUser } from '../persistence/findDbThreadsPerUser';
@@ -12,7 +13,10 @@ export function apiGetUserThreads(app: Application): void {
   app.route('/api/threads').get((req: Request, res: Response) => {
 
     const participantId = +req.headers.userid!;
-    console.log(participantId);
+
+    if (!participantId) {
+      res.status(404).json(ERRORS.MISSING_PART_ID);
+    }
 
     // FIXME: this is empty, because there is no participant id
     const threadsPerUser = findDbThreadsPerUser(participantId);
@@ -32,7 +36,7 @@ export function apiGetUserThreads(app: Application): void {
     const participants = _.uniq(participantIds.map(partId => dbParticipants[+partId]));
 
     const response: AllUserData = {
-      participants: [participantId],
+      participants,
       messages,
       threads: dbThreads,
     };
