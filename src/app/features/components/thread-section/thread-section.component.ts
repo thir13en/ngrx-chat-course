@@ -3,7 +3,8 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Store } from '@ngrx/store';
 
 import { ThreadsService } from '@shared/services';
-import { threadsActions } from '@store/index';
+import { StoreData, threadsActions } from '@store/index';
+import { AppState } from '@store/models';
 
 @Component({
   selector: 'app-thread-section',
@@ -22,7 +23,10 @@ export class ThreadSectionComponent implements OnInit {
     this.threadsSrv.loadUserThreads().subscribe(userTreads => {
       this.store.dispatch(threadsActions.loadUserThreads({ payload: userTreads }));
     });
-    this.store.subscribe(console.log);
+    this.store.subscribe((store: AppState) => {
+      console.log(store);
+    }
+);
   }
 
 }
