@@ -5,6 +5,7 @@ import { Store } from '@ngrx/store';
 import { ThreadsService } from '@shared/services';
 import { StoreData, threadsActions } from '@store/index';
 import { AppState } from '@store/models';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-thread-section',
@@ -16,17 +17,18 @@ export class ThreadSectionComponent implements OnInit {
 
   constructor(
     private threadsSrv: ThreadsService,
-    private store: Store
+    private store: Store<{ appState: AppState }>
   ) { }
 
   ngOnInit(): void {
-    this.threadsSrv.loadUserThreads().subscribe(userTreads => {
-      this.store.dispatch(threadsActions.loadUserThreads({ payload: userTreads }));
-    });
-    this.store.subscribe((store: AppState) => {
+    this.store.pipe(take(1)).subscribe((store: { appState: AppState }) => {
       console.log(store);
-    }
-);
+      console.log(store.appState.storeData.user.id);
+      // TODO add headers
+      this.threadsSrv.loadUserThreads(store.appState.storeData.user.id).subscribe(userTreads => {
+        this.store.dispatch(threadsActions.loadUserThreads({ payload: userTreads }));
+      });
+    });
   }
 
 }

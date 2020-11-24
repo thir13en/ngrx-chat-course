@@ -12,8 +12,8 @@ export class ThreadsService {
 
   constructor(private http: HttpClient) { }
 
-  loadUserThreads(): Observable<AllUserData> {
-    return this.http.get<AllUserData>('/api/threads');
+  loadUserThreads(userId: number): Observable<AllUserData> {
+    return this.http.get<AllUserData>(`/api/threads/${userId}`);
   }
 
 }
