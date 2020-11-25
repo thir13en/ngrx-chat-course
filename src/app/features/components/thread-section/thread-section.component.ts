@@ -22,9 +22,6 @@ export class ThreadSectionComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.pipe(take(1)).subscribe((store: { appState: AppState }) => {
-      console.log(store);
-      console.log(store.appState.storeData.user.id);
-      // TODO add headers
       this.threadsSrv.loadUserThreads(store.appState.storeData.user.id).subscribe(userTreads => {
         this.store.dispatch(threadsActions.loadUserThreads({ payload: userTreads }));
       });
