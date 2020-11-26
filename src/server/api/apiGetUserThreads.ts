@@ -12,7 +12,7 @@ export function apiGetUserThreads(app: Application): void {
 
   app.route('/api/threads').get((req: Request, res: Response) => {
 
-    const participantId = +req.headers.userid!;
+    const participantId = req.headers;
     console.log(participantId);
 
     // if (!participantId) {

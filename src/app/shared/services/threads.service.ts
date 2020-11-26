@@ -13,10 +13,10 @@ export class ThreadsService {
   constructor(private http: HttpClient) { }
 
   loadUserThreads(userId: number): Observable<AllUserData> {
-    const headers = new HttpHeaders();
-    headers.set('userId', userId.toString());
+    const headers = new HttpHeaders().set('userId', userId.toString());
+    console.log(headers.get('userId'));
 
-    return this.http.get<AllUserData>(`/api/threads`);
+    return this.http.get<AllUserData>(`/api/threads`, { headers });
   }
 
 }
