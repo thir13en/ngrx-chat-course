@@ -21,10 +21,15 @@ export class ThreadSectionComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.store.pipe(take(1)).subscribe((store: { appState: AppState }) => {
-      this.threadsSrv.loadUserThreads(store.appState.storeData.user.id).subscribe(userTreads => {
-        this.store.dispatch(threadsActions.loadUserThreads({ payload: userTreads }));
-      });
+    this.store
+      .pipe(take(1))
+      .subscribe((store: { appState: AppState }) => {
+      this.threadsSrv
+        .loadUserThreads(store.appState.storeData.user.id)
+        .subscribe(userTreads => {
+          console.log(userTreads);
+          this.store.dispatch(threadsActions.loadUserThreads({ payload: userTreads }));
+        });
     });
   }
 

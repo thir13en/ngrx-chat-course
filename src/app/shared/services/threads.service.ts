@@ -14,7 +14,6 @@ export class ThreadsService {
 
   loadUserThreads(userId: number): Observable<AllUserData> {
     const headers = new HttpHeaders().set('userId', userId.toString());
-    console.log(headers.get('userId'));
 
     return this.http.get<AllUserData>(`/api/threads`, { headers });
   }
