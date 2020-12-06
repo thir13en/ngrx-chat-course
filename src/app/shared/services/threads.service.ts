@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
 import { AllUserData } from '@shared/to';
+import { map } from 'rxjs/operators';
 
 
 @Injectable({
@@ -15,7 +16,9 @@ export class ThreadsService {
   loadUserThreads(userId: number): Observable<AllUserData> {
     const headers = new HttpHeaders().set('userId', userId.toString());
 
-    return this.http.get<AllUserData>(`/api/threads`, { headers });
+    return this.http
+      .get<{ response: AllUserData }>(`/api/threads`, { headers })
+      .pipe(map(res => res.response));
   }
 
 }

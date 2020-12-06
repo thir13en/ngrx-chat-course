@@ -1,5 +1,7 @@
 import { Action, createReducer, on } from '@ngrx/store';
 
+import { keyBy as _keyBy } from 'lodash';
+
 import { INITIAL_UI_STATE } from '@store/ui-state';
 import { INITIAL_STORE_DATA } from '@store/store-data';
 import { AppState } from '@store/models';
@@ -15,14 +17,17 @@ const appReducer = createReducer(
   INITIAL_APP_STATE,
   on(
     appActions.loadUserThreads,
-    (state, action) => {
-      return {
+    (state, { payload }) => {
+      console.log(payload);
+      return ({
         ...state,
         storeData: {
           ...state.storeData,
-          ...action.payload,
-        }
-      };
+          messages: _keyBy(payload.messages, 'id'),
+          participants: _keyBy(payload.participants, 'id'),
+          threads: _keyBy(payload.threads, 'id'),
+        },
+      });
     },
   ),
 );
