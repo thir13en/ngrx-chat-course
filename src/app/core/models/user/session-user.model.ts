@@ -7,7 +7,8 @@ export class SessionUserModel {
   readonly phone: string;
   readonly photoUrl: string;
 
-  constructor(userRes: unknown) {
+  // tslint:disable-next-line:no-any
+  constructor(userRes: any) {
     this.id = userRes.id;
     this.email = userRes.email;
     this.username = userRes.username;
