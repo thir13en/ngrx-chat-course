@@ -6,7 +6,6 @@ import { Store } from '@ngrx/store';
 import { ThreadsService } from '@shared/services';
 import { threadsActions } from '@store/index';
 import { AppState } from '@store/models';
-import { mapEntry } from '@angular/compiler/src/output/map_util';
 import { Observable } from 'rxjs';
 
 @Component({

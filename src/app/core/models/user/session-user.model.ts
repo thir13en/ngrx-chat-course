@@ -7,7 +7,7 @@ export class SessionUserModel {
   readonly phone: string;
   readonly photoUrl: string;
 
-  // tslint:disable-next-line:no-any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   constructor(userRes: any) {
     this.id = userRes.id;
     this.email = userRes.email;
