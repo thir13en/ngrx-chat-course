@@ -1,5 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
+import { values } from 'lodash';
 import { map, skip, take } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 
@@ -7,6 +8,8 @@ import { ThreadsService } from '@shared/services';
 import { threadsActions } from '@store/index';
 import { AppState } from '@store/models';
 import { Observable } from 'rxjs';
+import { Thread } from '@shared/models';
+
 
 @Component({
   selector: 'app-thread-section',
@@ -17,6 +20,7 @@ import { Observable } from 'rxjs';
 export class ThreadSectionComponent implements OnInit {
 
   userName$!: Observable<string>;
+  unreadMessages$!: Observable<number>;
 
   constructor(
     private threadsSrv: ThreadsService,
@@ -30,6 +34,11 @@ export class ThreadSectionComponent implements OnInit {
       map(state => state.appState),
       map(this.mapStateToUserName),
     );
+    this.unreadMessages$ = this.store.pipe(
+      skip(1),
+      map(state => state.appState),
+      map(this.mapStateToUnreadMessages),
+    );
   }
 
   /**
@@ -39,6 +48,13 @@ export class ThreadSectionComponent implements OnInit {
    */
   private mapStateToUserName({ storeData, uiState }: AppState): string {
     return storeData.participants[uiState.userId!].name;
+  }
+
+  private mapStateToUnreadMessages({ storeData, uiState }: AppState): number {
+    const userId = uiState.userId!;
+
+    console.log('unread', values<Thread>(storeData.threads).reduce((acc, curr) => acc + curr.participants[userId], 0));
+    return values<Thread>(storeData.threads).reduce((acc, curr) => acc + curr.participants[userId], 0);
   }
 
   /**
